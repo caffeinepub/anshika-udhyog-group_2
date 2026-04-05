@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Green NGO palette */
+    --background: 0.98 0.005 120;
+    --foreground: 0.18 0.04 150;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.04 150;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.04 150;
+    --primary: 0.36 0.13 150;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.94 0.03 140;
+    --secondary-foreground: 0.25 0.08 150;
+    --muted: 0.95 0.015 140;
+    --muted-foreground: 0.5 0.05 150;
+    --accent: 0.92 0.08 130;
+    --accent-foreground: 0.25 0.1 145;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.025 140;
+    --input: 0.9 0.02 140;
+    --ring: 0.36 0.13 150;
+
+    --chart-1: 0.55 0.15 145;
+    --chart-2: 0.65 0.18 160;
+    --chart-3: 0.7 0.12 100;
+    --chart-4: 0.75 0.14 80;
+    --chart-5: 0.6 0.2 30;
+
+    --sidebar: 0.22 0.08 152;
+    --sidebar-foreground: 0.96 0.02 100;
+    --sidebar-primary: 0.78 0.16 140;
+    --sidebar-primary-foreground: 0.18 0.08 150;
+    --sidebar-accent: 0.3 0.1 152;
+    --sidebar-accent-foreground: 0.96 0.02 100;
+    --sidebar-border: 0.28 0.07 152;
+    --sidebar-ring: 0.55 0.15 145;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui,
+      sans-serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--muted));
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--primary) / 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--primary) / 0.7);
+}
+
+/* Green theme utilities */
+.ngo-green-dark {
+  background-color: #166534;
+}
+.ngo-green {
+  background-color: #16a34a;
+}
+.ngo-green-light {
+  background-color: #22c55e;
+}
+.text-ngo-gold {
+  color: #d97706;
+}
+
+/* Print styles for ID cards and certificates */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: white !important;
+  }
+}
