@@ -84,7 +84,6 @@
     "react-icons": "^5.4.0",
     "react-quill-new": "3.4.6",
     "react-resizable-panels": "^2.1.7",
-    "react-router-dom": "^7.14.0",
     "react-use": "~17.6.0",
     "recharts": "^2.15.1",
     "sonner": "^1.7.4",
@@ -92,5 +91,8 @@
     "three": "^0.176.0",
     "vaul": "^1.1.2",
     "zustand": "~5.0.5"
+  },
+  "optionalDependencies": {
+    "react-router-dom": "^6.30.3"
   }
 }

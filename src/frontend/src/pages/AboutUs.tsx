@@ -29,20 +29,48 @@ export default function AboutUs() {
     photo: string;
   }>;
 
+  // Read page CMS data
+  const pageData = (contentMap.page_about || {}) as {
+    heroTitle?: string;
+    heroSubtitle?: string;
+    heroImage?: string;
+    pageContent?: string;
+  };
+
+  const heroTitle = pageData.heroTitle || "Anshika Udhyog Group";
+  const heroSubtitle =
+    pageData.heroSubtitle ||
+    "Anshika Udhyog Group is a premier NGO dedicated to empowering rural women through skill development, self-employment training, and entrepreneurship support. Founded with the vision of making every woman financially independent, we operate across 15+ states in India.";
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-12">
       {/* Hero */}
-      <div className="text-center mb-12">
+      <div
+        className="text-center mb-12"
+        style={
+          pageData.heroImage
+            ? {
+                backgroundImage: `url(${pageData.heroImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                padding: "48px 20px",
+                borderRadius: "12px",
+              }
+            : {}
+        }
+      >
         <Badge className="bg-green-100 text-green-800 mb-3">About Us</Badge>
         <h1 className="font-display font-bold text-3xl sm:text-4xl text-green-900 mb-4">
-          Anshika Udhyog Group
+          {heroTitle}
         </h1>
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Anshika Udhyog Group is a premier NGO dedicated to empowering rural
-          women through skill development, self-employment training, and
-          entrepreneurship support. Founded with the vision of making every
-          woman financially independent, we operate across 15+ states in India.
+          {heroSubtitle}
         </p>
+        {pageData.pageContent && (
+          <p className="mt-4 text-gray-700 max-w-3xl mx-auto">
+            {pageData.pageContent}
+          </p>
+        )}
       </div>
 
       {/* Mission Vision Values */}
@@ -94,7 +122,7 @@ export default function AboutUs() {
             Anshika Udhyog Group was established with a single powerful vision:
             to create a world where rural women can achieve financial
             independence through skill development and self-employment. Our
-            founders recognized the immense potential within India's rural
+            founders recognized the immense potential within India&apos;s rural
             communities and set out to unlock it.
           </p>
           <p>
@@ -119,7 +147,7 @@ export default function AboutUs() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {leadership.map((leader, idx) => (
             <Card
-              key={idx}
+              key={leader.name || String(idx)}
               className="hover:shadow-card-hover transition-shadow"
             >
               <CardContent className="p-6 text-center">

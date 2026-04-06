@@ -56,7 +56,15 @@ export default function AdminKYC() {
           </p>
         ) : (
           kycs.map((kyc, idx) => (
-            <Card key={idx} data-ocid={`kyc.item.${idx + 1}`}>
+            <Card
+              key={
+                (kyc as any).id ||
+                (kyc as any).title ||
+                (kyc as any).name ||
+                String(idx)
+              }
+              data-ocid={`kyc.item.${idx + 1}`}
+            >
               <CardHeader className="pb-2">
                 <div className="flex justify-between items-center">
                   <CardTitle className="text-base">{kyc.userName}</CardTitle>
@@ -108,8 +116,14 @@ export default function AdminKYC() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs font-medium">Admin Remark</label>
+                  <label
+                    className="text-xs font-medium"
+                    htmlFor="preexist_adminkyc_1"
+                  >
+                    Admin Remark
+                  </label>
                   <input
+                    id="preexist_adminkyc_1"
                     className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"
                     value={remark[kyc.userId] || ""}
                     onChange={(e) =>

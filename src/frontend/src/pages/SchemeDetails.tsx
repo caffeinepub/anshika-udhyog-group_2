@@ -77,7 +77,15 @@ export default function SchemeDetails() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {schemes.map((scheme, idx) => (
-          <Card key={idx} className="hover:shadow-card-hover transition-shadow">
+          <Card
+            key={
+              (scheme as any).id ||
+              (scheme as any).title ||
+              (scheme as any).name ||
+              String(idx)
+            }
+            className="hover:shadow-card-hover transition-shadow"
+          >
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{scheme.icon}</span>

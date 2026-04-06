@@ -61,7 +61,15 @@ export default function OurPartners() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {active.map((partner, idx) => (
-          <Card key={idx} className="hover:shadow-card-hover transition-shadow">
+          <Card
+            key={
+              (partner as any).id ||
+              (partner as any).title ||
+              (partner as any).name ||
+              String(idx)
+            }
+            className="hover:shadow-card-hover transition-shadow"
+          >
             <CardContent className="p-6">
               <div className="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center mb-4 overflow-hidden">
                 {partner.logo ? (

@@ -56,8 +56,11 @@ export default function Login() {
               data-ocid="login.modal"
             >
               <div>
-                <label className="text-sm font-medium">Email Address</label>
+                <label className="text-sm font-medium" htmlFor="login_f1">
+                  Email Address
+                </label>
                 <input
+                  id="login_f1"
                   type="email"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
                   value={email}
@@ -68,7 +71,7 @@ export default function Login() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium">Password</label>
+                <p className="text-sm font-medium">Password</p>
                 <div className="relative mt-1">
                   <input
                     type={showPass ? "text" : "password"}

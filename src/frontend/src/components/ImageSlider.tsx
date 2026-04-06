@@ -85,6 +85,7 @@ export default function ImageSlider({ slides: propSlides }: ImageSliderProps) {
       {slides.length > 1 && (
         <>
           <button
+            type="button"
             onClick={() =>
               setCurrent((current - 1 + slides.length) % slides.length)
             }
@@ -93,15 +94,17 @@ export default function ImageSlider({ slides: propSlides }: ImageSliderProps) {
             <ChevronLeft size={20} />
           </button>
           <button
+            type="button"
             onClick={next}
             className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full p-2"
           >
             <ChevronRight size={20} />
           </button>
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-            {slides.map((_, idx) => (
+            {slides.map((slide, idx) => (
               <button
-                key={idx}
+                type="button"
+                key={slide.id || idx}
                 onClick={() => setCurrent(idx)}
                 className={`w-2 h-2 rounded-full transition-all ${
                   idx === current ? "bg-white w-4" : "bg-white/50"

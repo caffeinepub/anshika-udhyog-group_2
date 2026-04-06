@@ -58,7 +58,16 @@ export default function Downloads() {
       </div>
       <div className="space-y-4">
         {active.map((doc, idx) => (
-          <Card key={idx} className="hover:shadow-card-hover transition-shadow">
+          <Card
+            key={
+              (doc as any).id ||
+              (doc as any).title ||
+              (doc as any).label ||
+              (doc as any).name ||
+              String(idx)
+            }
+            className="hover:shadow-card-hover transition-shadow"
+          >
             <CardContent className="p-5 flex items-center gap-4">
               <div className="bg-red-50 p-3 rounded-lg">
                 <FileText size={24} className="text-red-500" />

@@ -9,53 +9,79 @@ import { useAppContext } from "../context/AppContext";
 const DEFAULT_SCHEMES = [
   {
     title: "PM Mudra Yojana",
-    desc: "Loan upto ₹10 Lakh for small businesses",
-    icon: "🏦",
+    desc: "Loan upto \u20b910 Lakh for small businesses",
+    icon: "\ud83c\udfe6",
     color: "bg-blue-50 border-blue-200",
   },
   {
     title: "Startup India",
     desc: "Government support for new entrepreneurs",
-    icon: "🚀",
+    icon: "\ud83d\ude80",
     color: "bg-purple-50 border-purple-200",
   },
   {
     title: "PM SVANidhi",
     desc: "Working capital loan for street vendors",
-    icon: "💜",
+    icon: "\ud83d\udc9c",
     color: "bg-pink-50 border-pink-200",
   },
   {
     title: "NRLM",
     desc: "National Rural Livelihood Mission",
-    icon: "🌿",
+    icon: "\ud83c\udf3f",
     color: "bg-green-50 border-green-200",
   },
   {
     title: "Stand Up India",
     desc: "For SC/ST and women entrepreneurs",
-    icon: "⭐",
+    icon: "\u2b50",
     color: "bg-yellow-50 border-yellow-200",
   },
   {
     title: "PMEGP",
     desc: "Prime Minister Employment Generation Programme",
-    icon: "📊",
+    icon: "\ud83d\udcca",
     color: "bg-orange-50 border-orange-200",
   },
 ];
 
 const DEFAULT_INITIATIVES = [
   {
-    icon: "🧺",
+    icon: "\ud83e\uddfa",
     title: "Agarbatti Making",
     desc: "Learn traditional incense making",
+    image: "",
   },
-  { icon: "🕯️", title: "Candle Making", desc: "Decorative & aromatic candles" },
-  { icon: "🧴", title: "Soap Making", desc: "Herbal & organic soaps" },
-  { icon: "🥣", title: "Pickle Making", desc: "Traditional Indian pickles" },
-  { icon: "✂️", title: "Tailoring", desc: "Garment stitching & design" },
-  { icon: "💻", title: "Computer Basics", desc: "Digital literacy program" },
+  {
+    icon: "\ud83d\udd6f\ufe0f",
+    title: "Candle Making",
+    desc: "Decorative & aromatic candles",
+    image: "",
+  },
+  {
+    icon: "\ud83e\uddf4",
+    title: "Soap Making",
+    desc: "Herbal & organic soaps",
+    image: "",
+  },
+  {
+    icon: "\ud83e\udd63",
+    title: "Pickle Making",
+    desc: "Traditional Indian pickles",
+    image: "",
+  },
+  {
+    icon: "\u2702\ufe0f",
+    title: "Tailoring",
+    desc: "Garment stitching & design",
+    image: "",
+  },
+  {
+    icon: "\ud83d\udcbb",
+    title: "Computer Basics",
+    desc: "Digital literacy program",
+    image: "",
+  },
 ];
 
 export default function Home() {
@@ -83,6 +109,7 @@ export default function Home() {
     icon: string;
     title: string;
     desc: string;
+    image?: string;
   }>;
   const schemesData = (contentMap.schemes || DEFAULT_SCHEMES) as Array<{
     title: string;
@@ -90,6 +117,17 @@ export default function Home() {
     icon: string;
     color: string;
   }>;
+
+  // CMS stats
+  const statsData = (contentMap.stats || {
+    members: "5000+",
+    centers: "50+",
+    programs: "20+",
+    states: "15+",
+  }) as Record<string, string>;
+
+  // Hero image from admin
+  const heroImage = (contentMap.hero_image || "") as string;
 
   function getYoutubeId(url: string) {
     const match = url.match(/(?:v=|youtu\.be\/)([^&?\s]+)/);
@@ -100,26 +138,57 @@ export default function Home() {
 
   return (
     <main>
-      {/* Slider */}
-      <ImageSlider slides={sliderData.length > 0 ? sliderData : undefined} />
+      {/* Slider — inject custom hero image if set */}
+      {heroImage && sliderData.length === 0 ? (
+        <div
+          className="relative w-full h-64 sm:h-96 overflow-hidden"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <div className="text-center text-white px-4">
+              <h1 className="text-2xl sm:text-4xl font-bold mb-2">
+                {(contentMap.hero_text as string) ||
+                  "Empowering Women Through Self-Employment"}
+              </h1>
+              <p className="text-sm sm:text-base text-white/80">
+                Anshika Udhyog Group
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <ImageSlider slides={sliderData.length > 0 ? sliderData : undefined} />
+      )}
 
       {/* Stats Strip */}
       <div className="bg-green-700 text-white py-4">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
           <div>
-            <div className="font-bold text-2xl">5000+</div>
+            <div className="font-bold text-2xl">
+              {statsData.members || "5000+"}
+            </div>
             <div className="text-xs text-green-200">Members</div>
           </div>
           <div>
-            <div className="font-bold text-2xl">50+</div>
+            <div className="font-bold text-2xl">
+              {statsData.centers || "50+"}
+            </div>
             <div className="text-xs text-green-200">Centers</div>
           </div>
           <div>
-            <div className="font-bold text-2xl">20+</div>
+            <div className="font-bold text-2xl">
+              {statsData.programs || "20+"}
+            </div>
             <div className="text-xs text-green-200">Programs</div>
           </div>
           <div>
-            <div className="font-bold text-2xl">15+</div>
+            <div className="font-bold text-2xl">
+              {statsData.states || "15+"}
+            </div>
             <div className="text-xs text-green-200">States</div>
           </div>
         </div>
@@ -141,11 +210,19 @@ export default function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           {homeCards.map((card, idx) => (
             <Card
-              key={idx}
+              key={card.title || String(idx)}
               className="text-center hover:shadow-card-hover transition-shadow cursor-pointer border-green-100"
             >
               <CardContent className="p-4">
-                <div className="text-3xl mb-2">{card.icon}</div>
+                {card.image ? (
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-16 object-cover rounded mb-2"
+                  />
+                ) : (
+                  <div className="text-3xl mb-2">{card.icon}</div>
+                )}
                 <div className="font-semibold text-sm text-green-800">
                   {card.title}
                 </div>
@@ -172,7 +249,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {schemesData.slice(0, 6).map((scheme, idx) => (
               <div
-                key={idx}
+                key={scheme.title || String(idx)}
                 className={`rounded-xl border p-5 ${scheme.color || "bg-white border-gray-200"}`}
               >
                 <div className="text-2xl mb-2">{scheme.icon}</div>
@@ -212,7 +289,7 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {activeYoutube.map((video, idx) => (
-                <div key={idx} className="aspect-video">
+                <div key={video.id || String(idx)} className="aspect-video">
                   <iframe
                     className="w-full h-full rounded-xl shadow"
                     src={`https://www.youtube.com/embed/${getYoutubeId(video.url)}`}
@@ -240,15 +317,15 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {reviewsData.slice(0, 6).map((review, idx) => (
-                <Card key={idx}>
+                <Card key={review.id || String(idx)}>
                   <CardContent className="p-5">
                     <div className="flex gap-1 mb-3">
-                      {Array.from({ length: 5 }).map((_, i) => (
+                      {[1, 2, 3, 4, 5].map((starNum) => (
                         <Star
-                          key={i}
+                          key={starNum}
                           size={14}
                           className={
-                            i < review.rating
+                            starNum <= review.rating
                               ? "fill-yellow-400 text-yellow-400"
                               : "text-gray-300"
                           }
@@ -346,7 +423,7 @@ function ReviewForm() {
       </div>
       {submitted ? (
         <div className="text-center p-8 bg-green-50 rounded-xl">
-          <div className="text-4xl mb-3">✅</div>
+          <div className="text-4xl mb-3">\u2705</div>
           <p className="font-semibold text-green-800">
             Thank you! Your review has been submitted for approval.
           </p>
@@ -356,8 +433,11 @@ function ReviewForm() {
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-sm font-medium">Your Name</label>
+                <label className="text-sm font-medium" htmlFor="lbl_1">
+                  Your Name
+                </label>
                 <input
+                  id="lbl_1"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -367,7 +447,7 @@ function ReviewForm() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium">Rating</label>
+                <p className="text-sm font-medium">Rating</p>
                 <div className="flex gap-2 mt-1">
                   {[1, 2, 3, 4, 5].map((r) => (
                     <button type="button" key={r} onClick={() => setRating(r)}>
@@ -384,8 +464,11 @@ function ReviewForm() {
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium">Comment</label>
+                <label className="text-sm font-medium" htmlFor="lbl_2">
+                  Comment
+                </label>
                 <textarea
+                  id="lbl_2"
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   required

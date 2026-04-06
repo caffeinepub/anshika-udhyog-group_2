@@ -85,7 +85,12 @@ export default function OurTeam() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {active.map((member, idx) => (
           <Card
-            key={idx}
+            key={
+              (member as any).id ||
+              (member as any).title ||
+              (member as any).name ||
+              String(idx)
+            }
             className="hover:shadow-card-hover transition-shadow text-center"
           >
             <CardContent className="p-6">

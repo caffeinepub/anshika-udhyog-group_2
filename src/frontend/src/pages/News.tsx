@@ -52,7 +52,7 @@ export default function News() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {published.map((article, idx) => (
           <Card
-            key={idx}
+            key={(article as any).id || (article as any).title || String(idx)}
             className="overflow-hidden hover:shadow-card-hover transition-shadow"
           >
             {article.imageUrl && (

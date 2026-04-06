@@ -156,6 +156,7 @@ export default function AdminNews() {
             <CardHeader>
               <CardTitle>{editing ? "Edit" : "Add"} News</CardTitle>
               <button
+                type="button"
                 onClick={() => setShowForm(false)}
                 className="absolute top-4 right-4"
               >
@@ -164,8 +165,14 @@ export default function AdminNews() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <label className="text-sm font-medium">Title</label>
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="fld_adminnews_1"
+                >
+                  Title
+                </label>
                 <input
+                  id="fld_adminnews_1"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form.title || ""}
                   onChange={(e) =>
@@ -176,8 +183,14 @@ export default function AdminNews() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-sm font-medium">Date</label>
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="fld_adminnews_2"
+                  >
+                    Date
+                  </label>
                   <input
+                    id="fld_adminnews_2"
                     type="date"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.date || ""}
@@ -187,8 +200,14 @@ export default function AdminNews() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Category</label>
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="fld_adminnews_3"
+                  >
+                    Category
+                  </label>
                   <input
+                    id="fld_adminnews_3"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.category || ""}
                     onChange={(e) =>
@@ -198,8 +217,14 @@ export default function AdminNews() {
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium">Summary</label>
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="fld_adminnews_4"
+                >
+                  Summary
+                </label>
                 <textarea
+                  id="fld_adminnews_4"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   rows={3}
                   value={form.summary || ""}
@@ -210,7 +235,7 @@ export default function AdminNews() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium">Image</label>
+                <p className="text-sm font-medium">Image</p>
                 {form.imageUrl && (
                   <img
                     src={form.imageUrl}

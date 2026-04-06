@@ -45,21 +45,49 @@ export default function OurCenters() {
     DEFAULT_CENTERS) as typeof DEFAULT_CENTERS;
   const active = centers.filter((c) => c.isActive);
 
+  // Read page CMS data
+  const pageData = (contentMap.page_centers || {}) as {
+    heroTitle?: string;
+    heroSubtitle?: string;
+    heroImage?: string;
+    pageContent?: string;
+  };
+
+  const heroTitle = pageData.heroTitle || "Our Centers";
+  const heroSubtitle =
+    pageData.heroSubtitle || "Find an Anshika Udhyog Group center near you";
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-12">
-      <div className="text-center mb-10">
+      <div
+        className="text-center mb-10"
+        style={
+          pageData.heroImage
+            ? {
+                backgroundImage: `url(${pageData.heroImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                padding: "40px 20px",
+                borderRadius: "12px",
+              }
+            : {}
+        }
+      >
         <Badge className="bg-green-100 text-green-800 mb-3">Locations</Badge>
         <h1 className="font-display font-bold text-3xl text-green-900">
-          Our Centers
+          {heroTitle}
         </h1>
-        <p className="text-muted-foreground mt-2">
-          Find an Anshika Udhyog Group center near you
-        </p>
+        <p className="text-muted-foreground mt-2">{heroSubtitle}</p>
+        {pageData.pageContent && (
+          <p className="mt-3 text-gray-700 max-w-3xl mx-auto">
+            {pageData.pageContent}
+          </p>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {active.map((center, idx) => (
           <Card
-            key={idx}
+            key={center.id || String(idx)}
             className="overflow-hidden hover:shadow-card-hover transition-shadow"
           >
             {center.photo && (
@@ -91,7 +119,7 @@ export default function OurCenters() {
               <div className="flex flex-wrap gap-1 mt-2">
                 {(center.facilities || []).map((f, i) => (
                   <Badge
-                    key={i}
+                    key={f || String(i)}
                     className="bg-green-100 text-green-800 text-xs"
                   >
                     {f}

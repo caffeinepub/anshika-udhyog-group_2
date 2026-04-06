@@ -170,7 +170,7 @@ export default function GenericAdmin({
             <CardContent className="space-y-3">
               {fields.map((field) => (
                 <div key={field.key}>
-                  <label className="text-sm font-medium">{field.label}</label>
+                  <p className="text-sm font-medium">{field.label}</p>
                   {field.type === "textarea" ? (
                     <textarea
                       className="w-full mt-1 border rounded px-3 py-2 text-sm"

@@ -63,7 +63,7 @@ export default function Loan() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {loanContent.map((loan, idx) => (
           <Card
-            key={idx}
+            key={(loan as any).id || (loan as any).title || String(idx)}
             className={`hover:shadow-card-hover transition-shadow border-2 ${loan.color}`}
           >
             <CardHeader>
@@ -181,6 +181,7 @@ function LoanApplyForm({
         <CardHeader>
           <CardTitle>Loan Application Form</CardTitle>
           <button
+            type="button"
             onClick={onClose}
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
           >
@@ -198,7 +199,7 @@ function LoanApplyForm({
               address: "Address",
             }).map(([key, label]) => (
               <div key={key}>
-                <label className="text-sm font-medium">{label}</label>
+                <p className="text-sm font-medium">{label}</p>
                 {key === "purpose" || key === "address" ? (
                   <textarea
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"

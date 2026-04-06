@@ -70,9 +70,16 @@ export default function Gallery() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {filtered.map((item, idx) => (
-          <div
-            key={idx}
-            className="relative group cursor-pointer rounded-lg overflow-hidden aspect-square"
+          <button
+            type="button"
+            key={
+              (item as any).id ||
+              (item as any).title ||
+              (item as any).label ||
+              (item as any).name ||
+              String(idx)
+            }
+            className="relative group cursor-pointer rounded-lg overflow-hidden aspect-square text-left w-full border-0 p-0"
             onClick={() => setLightbox(item.url)}
           >
             {item.type === "video" ? (
@@ -90,7 +97,7 @@ export default function Gallery() {
             <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform bg-black/50">
               <p className="text-white text-xs">{item.caption}</p>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
@@ -105,8 +112,9 @@ export default function Gallery() {
 
       {/* Lightbox */}
       {lightbox && (
-        <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+        <button
+          type="button"
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 border-0"
           onClick={() => setLightbox(null)}
         >
           <img
@@ -114,10 +122,13 @@ export default function Gallery() {
             alt="Gallery"
             className="max-w-full max-h-full object-contain"
           />
-          <button className="absolute top-4 right-4 text-white text-2xl">
+          <button
+            type="button"
+            className="absolute top-4 right-4 text-white text-2xl"
+          >
             ✕
           </button>
-        </div>
+        </button>
       )}
     </main>
   );

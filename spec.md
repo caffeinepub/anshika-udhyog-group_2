@@ -1,40 +1,37 @@
-# Anshika Udhyog Group — NGO Management System
+# Anshika Udhyog Group - Full Admin CMS & ID Card System
 
 ## Current State
-Project is empty — no App.tsx, no pages, empty Motoko backend (actor {}), only shadcn/ui components installed.
+- Admin dashboard exists with 30+ sections
+- Content saved to backend via saveContent/getContent (key-value JSON store)
+- Most pages read from contentMap but admin edit is partial
+- Official Letters section exists but lacks A4 PDF generation
+- No ID card generator exists
+- Public pages (About, Training, Centers, etc.) have no direct admin edit interface
+- Hero images on pages are static/hardcoded
 
 ## Requested Changes (Diff)
 
 ### Add
-- Complete public website with 22+ pages (Home, About, Schemes, Centers, Training, Employment, Loan, Rewards, News, Gallery, Downloads, Legal Documents, Wishes, Our Team, Our Partners, Franchise, B2B Plan, Internship, Contact, FAQ, Terms, Rules, Complaint)
-- Header: white top bar with logo, green navbar with "Self Employment Revolution Scheme" left + title center + Signup/Login right
-- Category-wise mega menu with icons
-- User auth system: Signup (with KYC fields: Aadhaar, PAN, Father Name, DOB, Gender, Address) → Pending → Admin Approval
-- Secure login with role-based redirect
-- KYC system: upload Aadhaar, PAN, Photo, Address Proof, Bank Details
-- Admin Dashboard with 40+ management sections:
-  - Users, KYC, Company Profile, News, Gallery (photo+video), YouTube, Slider, Training, Centers, Transport, Employment, Rewards, Loan, Legal Docs, Wishes, Products, Reviews, Applications, Franchise, Internship, B2B, Leadership, Official Letters, Footer Settings
-- Role-based dashboards: User, Center, HR, Supervisor, Transport, Franchise Partner
-- ID Cards, Certificates, Official Letterhead (10 designs, signature/seal upload)
-- Shopping system with cart
-- Utilities/Recharge page
-- Franchise CRM with partner login
-- PWA support (manifest, service worker, install button)
-- WhatsApp floating button
-- Image slider on homepage
-- Reviews with star rating
-- Language switcher (Google Translate)
-- All data persisted in Motoko backend (no localStorage for critical data)
+- `AdminPageContent.tsx`: CMS editor for ALL 22+ public pages. Each page has editable fields: hero title, hero subtitle, hero image upload (from gallery or upload), body content blocks (text, image, list). Changes saved to backend and rendered live on public pages.
+- `AdminIDCards.tsx`: ID Card generator with 10 design templates. Fields: photo upload, full name, designation, member ID, organization, DOB, mobile, address, barcode (auto from member ID), seal image, signature image. PDF/print download. All 10 designs with distinct styles.
+- Upgrade `AdminOfficialLetters.tsx`: A4 auto-generate letter previews with proper letterhead, content, signature, seal. Letter type auto-fills relevant template content. PDF download via browser print/window.print with A4 CSS. Related letter templates auto-suggest content based on type.
+- Upgrade `AdminHomePage.tsx`: Add edit controls for ALL hero sections, ALL card grids (with icon/image upload from gallery), all stats. Upload option from gallery for hero background images.
+- Add route `/admin/page-content` and `/admin/id-cards` in App.tsx
+- Add nav items for Page Content and ID Cards in AdminLayout.tsx
+- Public pages (Home, AboutUs, Training, etc.) read their content from contentMap keys set by AdminPageContent
 
 ### Modify
-- Organization name: "Anshika Udhyog Group" throughout
-- Backend: add full data storage functions
+- `AdminHomePage.tsx`: Add hero image upload, full cards edit (add/edit/delete), schemes edit, gallery image selector
+- `AdminOfficialLetters.tsx`: Add A4 print CSS, auto letter content templates, proper PDF layout
+- `Home.tsx`: Read stats, hero text, hero image, cards from contentMap (already partially done, extend)
 
 ### Remove
-- Nothing (fresh build)
+- Nothing removed
 
 ## Implementation Plan
-1. Write spec.md (this file) + rename project
-2. Generate Motoko backend with saveContent/getContent/getAllContent + user management + KYC + applications storage
-3. Build frontend: App.tsx with routing, AppContext for state, all pages, admin dashboard, role-based dashboards
-4. Validate and deploy
+1. Create AdminPageContent.tsx - CMS for all public pages with hero + content block editing
+2. Create AdminIDCards.tsx - 10 ID card designs with photo/seal/signature/barcode, PDF download
+3. Upgrade AdminOfficialLetters.tsx - A4 layout, auto template content, PDF print
+4. Upgrade AdminHomePage.tsx - hero upload, full card management, gallery image picker
+5. Add new routes and nav items in App.tsx and AdminLayout.tsx
+6. Update public pages to read from contentMap for hero/content

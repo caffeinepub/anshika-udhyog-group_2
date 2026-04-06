@@ -115,7 +115,7 @@ export default function Signup() {
           {["Basic Info", "Personal Details", "KYC Details"].map(
             (label, idx) => (
               <div
-                key={idx}
+                key={label}
                 className={`flex-1 text-center py-1.5 rounded text-xs font-medium ${step === idx + 1 ? "bg-green-700 text-white" : step > idx + 1 ? "bg-green-200 text-green-800" : "bg-gray-100 text-gray-500"}`}
               >
                 {label}
@@ -131,8 +131,14 @@ export default function Signup() {
               {step === 1 && (
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm font-medium">Full Name *</label>
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_1"
+                    >
+                      Full Name *
+                    </label>
                     <input
+                      id="preexist_signup_1"
                       className={inputCls}
                       value={form.name}
                       onChange={(e) => set("name", e.target.value)}
@@ -141,10 +147,14 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium">
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_2"
+                    >
                       Mobile Number *
                     </label>
                     <input
+                      id="preexist_signup_2"
                       type="tel"
                       className={inputCls}
                       value={form.mobile}
@@ -155,10 +165,14 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium">
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_3"
+                    >
                       Email Address *
                     </label>
                     <input
+                      id="preexist_signup_3"
                       type="email"
                       className={inputCls}
                       value={form.email}
@@ -168,8 +182,14 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium">Password *</label>
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_4"
+                    >
+                      Password *
+                    </label>
                     <input
+                      id="preexist_signup_4"
                       type="password"
                       className={inputCls}
                       value={form.password}
@@ -180,10 +200,14 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium">
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_5"
+                    >
                       Confirm Password *
                     </label>
                     <input
+                      id="preexist_signup_5"
                       type="password"
                       className={inputCls}
                       value={form.confirmPassword}
@@ -193,8 +217,14 @@ export default function Signup() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium">Role *</label>
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_6"
+                    >
+                      Role *
+                    </label>
                     <select
+                      id="preexist_signup_6"
                       className={inputCls}
                       value={form.role}
                       onChange={(e) => set("role", e.target.value)}
@@ -233,10 +263,14 @@ export default function Signup() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm font-medium">
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_7"
+                      >
                         Father's Name
                       </label>
                       <input
+                        id="preexist_signup_7"
                         className={inputCls}
                         value={form.fatherName}
                         onChange={(e) => set("fatherName", e.target.value)}
@@ -244,10 +278,14 @@ export default function Signup() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium">
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_8"
+                      >
                         Date of Birth
                       </label>
                       <input
+                        id="preexist_signup_8"
                         type="date"
                         className={inputCls}
                         value={form.dob}
@@ -257,8 +295,14 @@ export default function Signup() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium">Gender</label>
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_9"
+                    >
+                      Gender
+                    </label>
                     <select
+                      id="preexist_signup_9"
                       className={inputCls}
                       value={form.gender}
                       onChange={(e) => set("gender", e.target.value)}
@@ -271,8 +315,14 @@ export default function Signup() {
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium">Address</label>
+                    <label
+                      className="text-sm font-medium"
+                      htmlFor="preexist_signup_10"
+                    >
+                      Address
+                    </label>
                     <textarea
+                      id="preexist_signup_10"
                       className={inputCls}
                       rows={2}
                       value={form.address}
@@ -282,8 +332,14 @@ export default function Signup() {
                   </div>
                   <div className="grid grid-cols-3 gap-3">
                     <div>
-                      <label className="text-sm font-medium">District</label>
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_11"
+                      >
+                        District
+                      </label>
                       <input
+                        id="preexist_signup_11"
                         className={inputCls}
                         value={form.district}
                         onChange={(e) => set("district", e.target.value)}
@@ -291,8 +347,14 @@ export default function Signup() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium">State</label>
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_12"
+                      >
+                        State
+                      </label>
                       <input
+                        id="preexist_signup_12"
                         className={inputCls}
                         value={form.state}
                         onChange={(e) => set("state", e.target.value)}
@@ -300,8 +362,14 @@ export default function Signup() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium">Pincode</label>
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_13"
+                      >
+                        Pincode
+                      </label>
                       <input
+                        id="preexist_signup_13"
                         className={inputCls}
                         value={form.pincode}
                         onChange={(e) => set("pincode", e.target.value)}
@@ -335,10 +403,14 @@ export default function Signup() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm font-medium">
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_14"
+                      >
                         Aadhaar Number
                       </label>
                       <input
+                        id="preexist_signup_14"
                         className={inputCls}
                         maxLength={12}
                         value={form.aadhaar}
@@ -350,8 +422,14 @@ export default function Signup() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium">PAN Number</label>
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_15"
+                      >
+                        PAN Number
+                      </label>
                       <input
+                        id="preexist_signup_15"
                         className={inputCls}
                         maxLength={10}
                         value={form.pan}
@@ -365,10 +443,14 @@ export default function Signup() {
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-sm font-medium">
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_16"
+                      >
                         Nominee Name
                       </label>
                       <input
+                        id="preexist_signup_16"
                         className={inputCls}
                         value={form.nomineeName}
                         onChange={(e) => set("nomineeName", e.target.value)}
@@ -376,10 +458,14 @@ export default function Signup() {
                       />
                     </div>
                     <div>
-                      <label className="text-sm font-medium">
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="preexist_signup_17"
+                      >
                         Nominee Relation
                       </label>
                       <input
+                        id="preexist_signup_17"
                         className={inputCls}
                         value={form.nomineeRelation}
                         onChange={(e) => set("nomineeRelation", e.target.value)}

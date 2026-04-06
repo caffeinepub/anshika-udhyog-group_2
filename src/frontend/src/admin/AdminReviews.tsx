@@ -76,7 +76,7 @@ export default function AdminReviews() {
                     <div className="flex gap-1 mt-1">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
-                          key={i}
+                          key={(_ as any).id || String(i)}
                           size={12}
                           className={
                             i < Number(review.rating)

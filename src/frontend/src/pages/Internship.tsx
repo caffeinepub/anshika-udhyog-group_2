@@ -118,7 +118,12 @@ export default function Internship() {
           .filter((v) => v.isActive)
           .map((vacancy, idx) => (
             <Card
-              key={idx}
+              key={
+                (vacancy as any).id ||
+                (vacancy as any).title ||
+                (vacancy as any).name ||
+                String(idx)
+              }
               className="overflow-hidden hover:shadow-card-hover transition-shadow"
             >
               {vacancy.imageUrl && (
@@ -152,7 +157,11 @@ export default function Internship() {
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {(vacancy.requirements || []).map((r, i) => (
-                    <Badge key={i} variant="outline" className="text-xs">
+                    <Badge
+                      key={(r as any).id || String(i)}
+                      variant="outline"
+                      className="text-xs"
+                    >
                       {r}
                     </Badge>
                   ))}
@@ -198,6 +207,7 @@ export default function Internship() {
                 <CardHeader>
                   <CardTitle>Apply: {selectedVacancy.title}</CardTitle>
                   <button
+                    type="button"
                     onClick={() => setSelectedVacancy(null)}
                     className="absolute top-4 right-4 text-gray-400"
                   >
@@ -219,9 +229,9 @@ export default function Internship() {
                       ] as const
                     ).map((key) => (
                       <div key={key}>
-                        <label className="text-xs font-medium capitalize">
+                        <p className="text-xs font-medium capitalize">
                           {key.replace(/([A-Z])/g, " $1")}
-                        </label>
+                        </p>
                         {key === "address" ? (
                           <textarea
                             className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"

@@ -78,7 +78,13 @@ export default function Employment() {
           .filter((j) => j.isActive)
           .map((job, idx) => (
             <Card
-              key={idx}
+              key={
+                (job as any).id ||
+                (job as any).title ||
+                (job as any).label ||
+                (job as any).name ||
+                String(idx)
+              }
               className="hover:shadow-card-hover transition-shadow"
             >
               <CardHeader className="pb-2">
@@ -93,7 +99,10 @@ export default function Employment() {
                 </p>
                 <p className="font-semibold text-green-700">{job.salary}</p>
                 <p className="text-gray-500">{job.requirements}</p>
-                <button className="text-green-700 text-xs underline">
+                <button
+                  type="button"
+                  className="text-green-700 text-xs underline"
+                >
                   Apply via Contact Form
                 </button>
               </CardContent>
@@ -104,12 +113,27 @@ export default function Employment() {
       <h2 className="font-bold text-xl text-green-900 mb-4">Success Stories</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {(empData.stories || []).map((story, idx) => (
-          <Card key={idx} className="bg-green-50 border-green-200">
+          <Card
+            key={
+              (story as any).id ||
+              (story as any).title ||
+              (story as any).label ||
+              (story as any).name ||
+              String(idx)
+            }
+            className="bg-green-50 border-green-200"
+          >
             <CardContent className="p-6">
               <div className="flex gap-1 mb-3">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
-                    key={i}
+                    key={
+                      (_ as any).id ||
+                      (_ as any).title ||
+                      (_ as any).label ||
+                      (_ as any).name ||
+                      String(i)
+                    }
                     size={14}
                     className="fill-yellow-400 text-yellow-400"
                   />

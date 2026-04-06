@@ -114,23 +114,56 @@ export default function Training() {
     DEFAULT_TRAINING) as typeof DEFAULT_TRAINING;
   const active = training.filter((t) => t.isActive);
 
+  // Read page CMS data
+  const pageData = (contentMap.page_training || {}) as {
+    heroTitle?: string;
+    heroSubtitle?: string;
+    heroImage?: string;
+    pageContent?: string;
+    isActive?: boolean;
+  };
+
+  const heroTitle = pageData.heroTitle || "Training Programs";
+  const heroSubtitle =
+    pageData.heroSubtitle ||
+    "Government-certified skill training programs for women empowerment";
+
   return (
     <main className="max-w-7xl mx-auto px-4 py-12">
-      <div className="text-center mb-10">
+      <div
+        className="text-center mb-10"
+        style={
+          pageData.heroImage
+            ? {
+                backgroundImage: `url(${pageData.heroImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                padding: "40px 20px",
+                borderRadius: "12px",
+                marginBottom: "40px",
+              }
+            : {}
+        }
+      >
         <Badge className="bg-green-100 text-green-800 mb-3">
           Skill Development
         </Badge>
         <h1 className="font-display font-bold text-3xl text-green-900">
-          Training Programs
+          {heroTitle}
         </h1>
         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Government-certified skill training programs for women empowerment
+          {heroSubtitle}
         </p>
+        {pageData.pageContent && (
+          <p className="mt-3 text-gray-700 max-w-3xl mx-auto">
+            {pageData.pageContent}
+          </p>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {active.map((program, idx) => (
           <Card
-            key={idx}
+            key={program.id || String(idx)}
             className="overflow-hidden hover:shadow-card-hover transition-shadow"
           >
             {program.imageUrl && (
@@ -166,7 +199,11 @@ export default function Training() {
               {program.outcomes && (
                 <div className="flex flex-wrap gap-1">
                   {program.outcomes.map((o, i) => (
-                    <Badge key={i} variant="outline" className="text-xs">
+                    <Badge
+                      key={o || String(i)}
+                      variant="outline"
+                      className="text-xs"
+                    >
                       {o}
                     </Badge>
                   ))}

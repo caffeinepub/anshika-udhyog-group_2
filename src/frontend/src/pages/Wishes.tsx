@@ -44,7 +44,12 @@ export default function Wishes() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {wishes.map((wish, idx) => (
           <Card
-            key={idx}
+            key={
+              (wish as any).id ||
+              (wish as any).title ||
+              (wish as any).name ||
+              String(idx)
+            }
             className="bg-gradient-to-br from-green-50 to-white border-green-100"
           >
             <CardContent className="p-6">

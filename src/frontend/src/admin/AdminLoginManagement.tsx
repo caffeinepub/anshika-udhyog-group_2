@@ -103,6 +103,7 @@ export default function AdminLoginManagement() {
                               : "••••••••"}
                           </span>
                           <button
+                            type="button"
                             onClick={() =>
                               setShowCode((p) => ({
                                 ...p,
@@ -118,6 +119,7 @@ export default function AdminLoginManagement() {
                             )}
                           </button>
                           <button
+                            type="button"
                             onClick={() => {
                               navigator.clipboard.writeText(user.passwordHash);
                               toast.success("Copied!");
@@ -141,6 +143,7 @@ export default function AdminLoginManagement() {
                             data-ocid={`login.input.${idx + 1}`}
                           />
                           <button
+                            type="button"
                             onClick={() =>
                               setNewCode((p) => ({
                                 ...p,

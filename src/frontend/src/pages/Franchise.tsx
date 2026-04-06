@@ -135,7 +135,13 @@ export default function Franchise() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {(fd.plans || DEFAULT_FRANCHISE.plans).map((plan, idx) => (
           <Card
-            key={idx}
+            key={
+              (plan as any).id ||
+              (plan as any).title ||
+              (plan as any).label ||
+              (plan as any).name ||
+              String(idx)
+            }
             className={`relative border-2 ${plan.color || "bg-white border-gray-200"}`}
           >
             {plan.popular && (
@@ -234,6 +240,7 @@ export default function Franchise() {
                 <CardHeader>
                   <CardTitle>Franchise Application Form</CardTitle>
                   <button
+                    type="button"
                     onClick={() => setShowForm(false)}
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
                   >
@@ -265,8 +272,14 @@ export default function Franchise() {
                               : ""
                           }
                         >
-                          <label className="text-xs font-medium">{label}</label>
+                          <label
+                            className="text-xs font-medium"
+                            htmlFor="franchise_f1"
+                          >
+                            {label}
+                          </label>
                           <input
+                            id="franchise_f1"
                             type={
                               key === "dob"
                                 ? "date"
@@ -290,8 +303,14 @@ export default function Franchise() {
                         </div>
                       ))}
                       <div className="col-span-2">
-                        <label className="text-xs font-medium">Address</label>
+                        <label
+                          className="text-xs font-medium"
+                          htmlFor="franchise_f2"
+                        >
+                          Address
+                        </label>
                         <textarea
+                          id="franchise_f2"
                           className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"
                           rows={2}
                           value={form.address}
@@ -303,10 +322,14 @@ export default function Franchise() {
                         />
                       </div>
                       <div>
-                        <label className="text-xs font-medium">
+                        <label
+                          className="text-xs font-medium"
+                          htmlFor="franchise_f3"
+                        >
                           Franchise Category
                         </label>
                         <select
+                          id="franchise_f3"
                           className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"
                           value={form.category}
                           onChange={(e) =>
@@ -317,8 +340,8 @@ export default function Franchise() {
                         >
                           <option value="">Select Category</option>
                           {(fd.programs || DEFAULT_FRANCHISE.programs).map(
-                            (prog, i) => (
-                              <option key={i} value={prog}>
+                            (prog) => (
+                              <option key={prog} value={prog}>
                                 {prog}
                               </option>
                             ),
@@ -326,10 +349,14 @@ export default function Franchise() {
                         </select>
                       </div>
                       <div>
-                        <label className="text-xs font-medium">
+                        <label
+                          className="text-xs font-medium"
+                          htmlFor="franchise_f4"
+                        >
                           Preferred Plan
                         </label>
                         <select
+                          id="franchise_f4"
                           className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"
                           value={form.plan}
                           onChange={(e) =>
@@ -339,7 +366,16 @@ export default function Franchise() {
                         >
                           <option value="">Select Plan</option>
                           {(fd.plans || DEFAULT_FRANCHISE.plans).map((p, i) => (
-                            <option key={i} value={p.name}>
+                            <option
+                              key={
+                                (p as any).id ||
+                                (p as any).title ||
+                                (p as any).label ||
+                                (p as any).name ||
+                                String(i)
+                              }
+                              value={p.name}
+                            >
                               {p.name} - {p.investment}
                             </option>
                           ))}

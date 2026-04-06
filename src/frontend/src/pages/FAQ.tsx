@@ -62,8 +62,18 @@ export default function FAQ() {
       </div>
       <div className="space-y-3">
         {FAQS.map((faq, idx) => (
-          <Card key={idx} className="overflow-hidden">
+          <Card
+            key={
+              (faq as any).id ||
+              (faq as any).title ||
+              (faq as any).label ||
+              (faq as any).name ||
+              String(idx)
+            }
+            className="overflow-hidden"
+          >
             <button
+              type="button"
               className="w-full text-left p-5 flex items-center justify-between hover:bg-green-50"
               onClick={() => setOpen(open === idx ? null : idx)}
               data-ocid={`faq.item.${idx + 1}`}

@@ -73,7 +73,12 @@ export default function TransportDashboard() {
                 ) : (
                   vehicles.map((v, idx) => (
                     <div
-                      key={idx}
+                      key={
+                        (v as any).id ||
+                        (v as any).title ||
+                        (v as any).name ||
+                        String(idx)
+                      }
                       className="flex justify-between items-center p-3 border rounded mb-2"
                       data-ocid={`transport.vehicles.item.${idx + 1}`}
                     >
@@ -121,7 +126,7 @@ export default function TransportDashboard() {
                   (v, idx) =>
                     v.driverName && (
                       <div
-                        key={idx}
+                        key={String(idx)}
                         className="flex justify-between p-3 border rounded mb-2"
                         data-ocid={`transport.drivers.item.${idx + 1}`}
                       >

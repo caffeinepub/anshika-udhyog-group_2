@@ -49,6 +49,7 @@ import AdminFranchise from "./admin/AdminFranchise";
 import AdminFranchisePartners from "./admin/AdminFranchisePartners";
 import AdminGallery from "./admin/AdminGallery";
 import AdminHomePage from "./admin/AdminHomePage";
+import AdminIDCards from "./admin/AdminIDCards";
 import AdminInternship from "./admin/AdminInternship";
 import AdminKYC from "./admin/AdminKYC";
 // Admin
@@ -61,6 +62,7 @@ import AdminNews from "./admin/AdminNews";
 import AdminOfficialLetters from "./admin/AdminOfficialLetters";
 import AdminOurPartners from "./admin/AdminOurPartners";
 import AdminOurTeam from "./admin/AdminOurTeam";
+import AdminPageContent from "./admin/AdminPageContent";
 import AdminProducts from "./admin/AdminProducts";
 import AdminReviews from "./admin/AdminReviews";
 import AdminRewards from "./admin/AdminRewards";
@@ -392,6 +394,8 @@ function AppRoutes() {
         <Route path="kyc" element={<AdminKYC />} />
         <Route path="login-management" element={<AdminLoginManagement />} />
         <Route path="home-page" element={<AdminHomePage />} />
+        <Route path="page-content" element={<AdminPageContent />} />
+        <Route path="id-cards" element={<AdminIDCards />} />
         <Route path="settings" element={<AdminSettings />} />
         <Route path="footer" element={<AdminFooter />} />
         <Route path="news" element={<AdminNews />} />

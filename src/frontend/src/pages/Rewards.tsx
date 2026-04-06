@@ -64,7 +64,15 @@ export default function Rewards() {
       <h2 className="font-bold text-xl text-green-900 mb-4">Our Awards</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         {(rewardsData.awards || []).map((award, idx) => (
-          <Card key={idx} className="border-yellow-200 bg-yellow-50">
+          <Card
+            key={
+              (award as any).id ||
+              (award as any).title ||
+              (award as any).name ||
+              String(idx)
+            }
+            className="border-yellow-200 bg-yellow-50"
+          >
             <CardHeader className="pb-2">
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{award.icon}</span>
@@ -86,7 +94,15 @@ export default function Rewards() {
       <h2 className="font-bold text-xl text-green-900 mb-4">Award Winners</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {(rewardsData.winners || []).map((winner, idx) => (
-          <Card key={idx} className="text-center">
+          <Card
+            key={
+              (winner as any).id ||
+              (winner as any).title ||
+              (winner as any).name ||
+              String(idx)
+            }
+            className="text-center"
+          >
             <CardContent className="p-6">
               <div className="w-16 h-16 rounded-full bg-green-200 flex items-center justify-center mx-auto mb-3">
                 <Trophy size={24} className="text-green-800" />

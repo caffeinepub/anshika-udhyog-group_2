@@ -66,7 +66,10 @@ export default function LegalDocuments() {
       </div>
       <div className="space-y-4">
         {active.map((doc, idx) => (
-          <Card key={idx} className="hover:shadow-card-hover transition-shadow">
+          <Card
+            key={(doc as any).id || (doc as any).title || String(idx)}
+            className="hover:shadow-card-hover transition-shadow"
+          >
             <CardContent className="p-5">
               <div className="flex items-start gap-4">
                 <div className="bg-blue-50 p-3 rounded-lg shrink-0">

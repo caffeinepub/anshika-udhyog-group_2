@@ -6,9 +6,11 @@ import {
   Building2,
   ChevronDown,
   ClipboardList,
+  CreditCard,
   DollarSign,
   FileBadge,
   FileCheck,
+  FileEdit,
   FileText,
   Globe,
   Heart,
@@ -47,6 +49,7 @@ const NAV_ITEMS = [
     path: "/admin/login-management",
   },
   { label: "Home Page", icon: Home, path: "/admin/home-page" },
+  { label: "Page Content CMS", icon: FileEdit, path: "/admin/page-content" },
   { label: "Company Settings", icon: Settings, path: "/admin/settings" },
   { label: "Footer Settings", icon: Globe, path: "/admin/footer" },
   { label: "News Management", icon: Newspaper, path: "/admin/news" },
@@ -80,6 +83,7 @@ const NAV_ITEMS = [
     icon: FileText,
     path: "/admin/official-letters",
   },
+  { label: "ID Card Generator", icon: CreditCard, path: "/admin/id-cards" },
   { label: "Transport", icon: Truck, path: "/admin/transport" },
 ];
 
@@ -100,6 +104,11 @@ export default function AdminLayout() {
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-20 lg:hidden"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") setSidebarOpen(false);
+          }}
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -122,6 +131,7 @@ export default function AdminLayout() {
             <div className="text-xs text-green-300">Anshika Udhyog Group</div>
           </div>
           <button
+            type="button"
             className="ml-auto lg:hidden text-green-300"
             onClick={() => setSidebarOpen(false)}
           >
@@ -141,6 +151,7 @@ export default function AdminLayout() {
                   ? "bg-green-700 text-white font-medium"
                   : "text-green-200 hover:bg-green-800 hover:text-white"
               }`}
+              data-ocid={`admin.nav.${item.label.toLowerCase().replace(/\s+/g, "_")}.link`}
             >
               <item.icon size={16} />
               {item.label}
@@ -158,6 +169,7 @@ export default function AdminLayout() {
             variant="ghost"
             className="w-full text-green-200 hover:bg-green-800 justify-start gap-2"
             onClick={handleLogout}
+            data-ocid="admin.logout.button"
           >
             <LogOut size={14} /> Logout
           </Button>
@@ -169,8 +181,10 @@ export default function AdminLayout() {
         {/* Top bar */}
         <header className="bg-white border-b border-border px-4 py-3 flex items-center gap-3">
           <button
+            type="button"
             className="lg:hidden text-gray-600"
             onClick={() => setSidebarOpen(true)}
+            data-ocid="admin.menu.button"
           >
             <Menu size={20} />
           </button>

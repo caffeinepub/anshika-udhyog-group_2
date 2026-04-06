@@ -57,13 +57,23 @@ export default function Rules() {
               ],
             },
           ].map((section, idx) => (
-            <div key={idx}>
+            <div
+              key={
+                (section as any).id ||
+                (section as any).title ||
+                (section as any).name ||
+                String(idx)
+              }
+            >
               <h2 className="font-bold text-lg text-green-900 mb-3">
                 {idx + 1}. {section.title}
               </h2>
               <ul className="space-y-2">
                 {section.rules.map((rule, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm">
+                  <li
+                    key={(rule as any).id || String(i)}
+                    className="flex items-start gap-2 text-sm"
+                  >
                     <span className="text-green-600 font-bold mt-0.5">•</span>{" "}
                     {rule}
                   </li>

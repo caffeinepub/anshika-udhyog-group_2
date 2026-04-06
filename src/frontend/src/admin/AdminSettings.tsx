@@ -50,10 +50,14 @@ export default function AdminSettings() {
               />
             </div>
             <div className="flex-1">
-              <label className="text-sm font-medium block mb-1">
+              <label
+                className="text-sm font-medium block mb-1"
+                htmlFor="settings_field_1"
+              >
                 Organization Logo
               </label>
               <input
+                id="settings_field_1"
                 type="file"
                 accept="image/*"
                 onChange={handleLogoUpload}
@@ -66,8 +70,11 @@ export default function AdminSettings() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium">Organization Name</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_2">
+                Organization Name
+              </label>
               <input
+                id="settings_field_2"
                 className={inputCls}
                 value={form.orgName}
                 onChange={(e) =>
@@ -77,8 +84,11 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Tagline</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_3">
+                Tagline
+              </label>
               <input
+                id="settings_field_3"
                 className={inputCls}
                 value={form.tagline}
                 onChange={(e) =>
@@ -87,8 +97,11 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Subtitle</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_4">
+                Subtitle
+              </label>
               <input
+                id="settings_field_4"
                 className={inputCls}
                 value={form.subtitle}
                 onChange={(e) =>
@@ -97,8 +110,11 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium">WhatsApp Number</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_5">
+                WhatsApp Number
+              </label>
               <input
+                id="settings_field_5"
                 className={inputCls}
                 value={form.whatsappNumber}
                 onChange={(e) =>
@@ -108,8 +124,11 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Phone</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_6">
+                Phone
+              </label>
               <input
+                id="settings_field_6"
                 className={inputCls}
                 value={form.phone}
                 onChange={(e) =>
@@ -118,8 +137,11 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Email</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_7">
+                Email
+              </label>
               <input
+                id="settings_field_7"
                 type="email"
                 className={inputCls}
                 value={form.email}
@@ -129,8 +151,11 @@ export default function AdminSettings() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="text-sm font-medium">Address</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_8">
+                Address
+              </label>
               <textarea
+                id="settings_field_8"
                 className={inputCls}
                 rows={2}
                 value={form.address}
@@ -140,8 +165,11 @@ export default function AdminSettings() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="text-sm font-medium">Footer Text</label>
+              <label className="text-sm font-medium" htmlFor="settings_field_9">
+                Footer Text
+              </label>
               <input
+                id="settings_field_9"
                 className={inputCls}
                 value={form.footerText}
                 onChange={(e) =>

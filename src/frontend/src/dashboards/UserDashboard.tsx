@@ -205,9 +205,9 @@ export default function UserDashboard() {
                       ["aadhaarDoc", "panDoc", "photo", "addressProof"] as const
                     ).map((key) => (
                       <div key={key}>
-                        <label className="text-sm font-medium capitalize">
+                        <p className="text-sm font-medium capitalize">
                           {key.replace(/Doc|Proof/, " Document")}
-                        </label>
+                        </p>
                         {kycForm[key] && (
                           <img
                             src={kycForm[key]}
@@ -225,10 +225,14 @@ export default function UserDashboard() {
                       </div>
                     ))}
                     <div>
-                      <label className="text-sm font-medium">
+                      <label
+                        className="text-sm font-medium"
+                        htmlFor="userdashboard_f1"
+                      >
                         Bank Details
                       </label>
                       <textarea
+                        id="userdashboard_f1"
                         className="w-full mt-1 border rounded px-3 py-2 text-sm"
                         rows={2}
                         value={kycForm.bankDetails}
@@ -302,8 +306,14 @@ export default function UserDashboard() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium">Loan Type</label>
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="userdashboard_f2"
+                  >
+                    Loan Type
+                  </label>
                   <select
+                    id="userdashboard_f2"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={loanForm.loanType}
                     onChange={(e) =>
@@ -317,8 +327,14 @@ export default function UserDashboard() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Amount Required</label>
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="userdashboard_f3"
+                  >
+                    Amount Required
+                  </label>
                   <input
+                    id="userdashboard_f3"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={loanForm.amount}
                     onChange={(e) =>
@@ -329,8 +345,14 @@ export default function UserDashboard() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Purpose</label>
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="userdashboard_f4"
+                  >
+                    Purpose
+                  </label>
                   <textarea
+                    id="userdashboard_f4"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     rows={3}
                     value={loanForm.purpose}
@@ -363,7 +385,12 @@ export default function UserDashboard() {
                     .filter((p) => p.isActive)
                     .map((product, idx) => (
                       <div
-                        key={idx}
+                        key={
+                          (product as any).id ||
+                          (product as any).title ||
+                          (product as any).name ||
+                          String(idx)
+                        }
                         className="border rounded-lg p-3 hover:shadow-md transition-shadow"
                       >
                         {product.imageUrl && (
@@ -408,7 +435,12 @@ export default function UserDashboard() {
                     </h3>
                     {cart.map((item, i) => (
                       <div
-                        key={i}
+                        key={
+                          (item as any).id ||
+                          (item as any).title ||
+                          (item as any).name ||
+                          String(i)
+                        }
                         className="flex justify-between text-sm py-1"
                       >
                         <span>{item.name}</span>
@@ -512,13 +544,14 @@ function UtilitiesPanel() {
       <CardContent>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-6">
           {services.map((s) => (
-            <div
+            <button
+              type="button"
               key={s.name}
               onClick={() => {
                 setSelected(s);
                 setStep("form");
               }}
-              className={`text-center p-3 rounded-xl cursor-pointer border-2 transition-all ${
+              className={`text-center p-3 rounded-xl cursor-pointer border-2 transition-all bg-transparent ${
                 selected?.name === s.name
                   ? "border-green-600 bg-green-50"
                   : "border-gray-200 hover:border-green-300"
@@ -527,7 +560,7 @@ function UtilitiesPanel() {
             >
               <div className="text-2xl">{s.icon}</div>
               <div className="text-xs font-medium mt-1">{s.name}</div>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -537,8 +570,11 @@ function UtilitiesPanel() {
               {selected.icon} {selected.name}
             </h3>
             <div>
-              <label className="text-sm font-medium">Account / Number</label>
+              <label className="text-sm font-medium" htmlFor="userdashboard_f5">
+                Account / Number
+              </label>
               <input
+                id="userdashboard_f5"
                 className="w-full mt-1 border rounded px-3 py-2 text-sm"
                 value={account}
                 onChange={(e) => setAccount(e.target.value)}
@@ -547,10 +583,11 @@ function UtilitiesPanel() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Amount</label>
+              <p className="text-sm font-medium">Amount</p>
               <div className="flex flex-wrap gap-2 mt-1">
                 {["99", "199", "299", "499", "999"].map((a) => (
                   <button
+                    type="button"
                     key={a}
                     onClick={() => setAmount(a)}
                     className={`px-3 py-1 rounded border text-sm ${amount === a ? "bg-green-700 text-white border-green-700" : "hover:border-green-500"}`}

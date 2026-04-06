@@ -183,6 +183,7 @@ export default function Header() {
             {/* Language switcher */}
             <div className="relative">
               <button
+                type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   setLangOpen(!langOpen);
@@ -195,6 +196,7 @@ export default function Header() {
                 <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded shadow-lg z-50 min-w-32">
                   {languages.map((lang) => (
                     <button
+                      type="button"
                       key={lang.code}
                       onClick={() => handleLangChange(lang.code)}
                       className="block w-full text-left px-3 py-2 text-sm hover:bg-green-50"
@@ -208,6 +210,7 @@ export default function Header() {
           </div>
           {/* Mobile hamburger */}
           <button
+            type="button"
             className="md:hidden text-white"
             onClick={() => setMobileOpen(!mobileOpen)}
             data-ocid="header.toggle"
@@ -248,8 +251,12 @@ export default function Header() {
               Home
             </Link>
             {menuCategories.map((cat, idx) => (
-              <div key={idx} className="relative">
+              <div
+                key={(cat as any).label || (cat as any).id || String(idx)}
+                className="relative"
+              >
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveCategory(activeCategory === idx ? null : idx);
@@ -291,8 +298,12 @@ export default function Header() {
             🏠 Home
           </Link>
           {menuCategories.map((cat, idx) => (
-            <div key={idx} className="border-b border-green-700">
+            <div
+              key={(cat as any).label || (cat as any).id || String(idx)}
+              className="border-b border-green-700"
+            >
               <button
+                type="button"
                 className="w-full flex items-center justify-between px-4 py-3 text-white"
                 onClick={() =>
                   setMobileExpanded(mobileExpanded === idx ? null : idx)

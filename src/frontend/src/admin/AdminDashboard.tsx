@@ -105,7 +105,15 @@ export default function AdminDashboard() {
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {statCards.map((stat, idx) => (
-          <Card key={idx} className={`border ${stat.border}`}>
+          <Card
+            key={
+              (stat as any).id ||
+              (stat as any).title ||
+              (stat as any).name ||
+              String(idx)
+            }
+            className={`border ${stat.border}`}
+          >
             <CardContent className="p-4">
               <div className={`inline-flex p-2 rounded-lg mb-2 ${stat.color}`}>
                 <stat.icon size={16} />
@@ -129,7 +137,15 @@ export default function AdminDashboard() {
             ) : (
               <div className="space-y-3">
                 {recentUsers.map((user, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-sm">
+                  <div
+                    key={
+                      (user as any).id ||
+                      (user as any).title ||
+                      (user as any).name ||
+                      String(idx)
+                    }
+                    className="flex items-center gap-3 text-sm"
+                  >
                     <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-800 font-bold text-xs">
                       {user.name.charAt(0)}
                     </div>
@@ -170,7 +186,15 @@ export default function AdminDashboard() {
             ) : (
               <div className="space-y-3">
                 {recentApps.map((app, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-sm">
+                  <div
+                    key={
+                      (app as any).id ||
+                      (app as any).title ||
+                      (app as any).name ||
+                      String(idx)
+                    }
+                    className="flex items-center gap-3 text-sm"
+                  >
                     <div className="flex-1">
                       <div className="font-medium">{app.applicantName}</div>
                       <div className="text-xs text-muted-foreground capitalize">

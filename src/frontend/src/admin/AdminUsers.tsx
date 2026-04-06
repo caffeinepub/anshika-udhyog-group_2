@@ -31,6 +31,7 @@ export default function AdminUsers() {
     setLoading(false);
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: loadUsers defined in component scope
   useEffect(() => {
     loadUsers();
   }, [actor]);
@@ -334,9 +335,7 @@ export default function AdminUsers() {
               ] as [keyof User, string][]
             ).map(([key, label]) => (
               <div key={key} className={key === "address" ? "col-span-2" : ""}>
-                <label className="text-xs font-medium text-gray-500">
-                  {label}
-                </label>
+                <p className="text-xs font-medium text-gray-500">{label}</p>
                 {key === "role" ? (
                   <select
                     className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"
@@ -477,7 +476,8 @@ function UserProfile({ user }: { user: User }) {
         <div className="flex gap-2 mb-3">
           {designs.map((d, i) => (
             <button
-              key={i}
+              type="button"
+              key={d.name || String(i)}
               onClick={() => setDesign(i)}
               className={`px-2 py-1 text-xs rounded border ${design === i ? "border-green-600 font-bold" : "border-gray-300"}`}
             >

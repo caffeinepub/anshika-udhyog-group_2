@@ -31,8 +31,14 @@ export default function AdminFooter() {
                 key={key}
                 className={key === "footerText" ? "col-span-2" : ""}
               >
-                <label className="text-sm font-medium">{label}</label>
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="preexist_adminfooter_1"
+                >
+                  {label}
+                </label>
                 <input
+                  id="preexist_adminfooter_1"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form[key] || ""}
                   onChange={(e) =>

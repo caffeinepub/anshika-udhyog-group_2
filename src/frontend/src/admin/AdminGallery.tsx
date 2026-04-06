@@ -137,6 +137,7 @@ export default function AdminGallery() {
             <CardHeader>
               <CardTitle>{editing ? "Edit" : "Add"} Gallery Item</CardTitle>
               <button
+                type="button"
                 onClick={() => setShowForm(false)}
                 className="absolute top-4 right-4"
               >
@@ -145,8 +146,14 @@ export default function AdminGallery() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <label className="text-sm font-medium">Type</label>
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="preexist_admingallery_1"
+                >
+                  Type
+                </label>
                 <select
+                  id="preexist_admingallery_1"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form.type || "photo"}
                   onChange={(e) =>
@@ -163,8 +170,14 @@ export default function AdminGallery() {
               </div>
               {form.type === "video" ? (
                 <div>
-                  <label className="text-sm font-medium">Video URL</label>
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="preexist_admingallery_2"
+                  >
+                    Video URL
+                  </label>
                   <input
+                    id="preexist_admingallery_2"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.url || ""}
                     onChange={(e) =>
@@ -175,7 +188,7 @@ export default function AdminGallery() {
                 </div>
               ) : (
                 <div>
-                  <label className="text-sm font-medium">Photo</label>
+                  <p className="text-sm font-medium">Photo</p>
                   {form.url && (
                     <img
                       src={form.url}
@@ -192,8 +205,14 @@ export default function AdminGallery() {
                 </div>
               )}
               <div>
-                <label className="text-sm font-medium">Caption</label>
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="preexist_admingallery_3"
+                >
+                  Caption
+                </label>
                 <input
+                  id="preexist_admingallery_3"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form.caption || ""}
                   onChange={(e) =>
@@ -203,8 +222,14 @@ export default function AdminGallery() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium">Category</label>
+                <label
+                  className="text-sm font-medium"
+                  htmlFor="preexist_admingallery_4"
+                >
+                  Category
+                </label>
                 <input
+                  id="preexist_admingallery_4"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form.category || ""}
                   onChange={(e) =>

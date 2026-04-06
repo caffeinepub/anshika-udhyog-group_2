@@ -79,8 +79,11 @@ export default function Complaint() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-sm font-medium">Your Name *</label>
+                  <label className="text-sm font-medium" htmlFor="complaint_f1">
+                    Your Name *
+                  </label>
                   <input
+                    id="complaint_f1"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.name}
                     onChange={(e) =>
@@ -91,8 +94,11 @@ export default function Complaint() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Member ID</label>
+                  <label className="text-sm font-medium" htmlFor="complaint_f2">
+                    Member ID
+                  </label>
                   <input
+                    id="complaint_f2"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.memberId}
                     onChange={(e) =>
@@ -105,8 +111,11 @@ export default function Complaint() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-sm font-medium">Phone *</label>
+                  <label className="text-sm font-medium" htmlFor="complaint_f3">
+                    Phone *
+                  </label>
                   <input
+                    id="complaint_f3"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.phone}
                     onChange={(e) =>
@@ -117,8 +126,11 @@ export default function Complaint() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Email</label>
+                  <label className="text-sm font-medium" htmlFor="complaint_f4">
+                    Email
+                  </label>
                   <input
+                    id="complaint_f4"
                     type="email"
                     className="w-full mt-1 border rounded px-3 py-2 text-sm"
                     value={form.email}
@@ -130,8 +142,11 @@ export default function Complaint() {
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium">Category *</label>
+                <label className="text-sm font-medium" htmlFor="complaint_f5">
+                  Category *
+                </label>
                 <select
+                  id="complaint_f5"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form.category}
                   onChange={(e) =>
@@ -150,8 +165,11 @@ export default function Complaint() {
                 </select>
               </div>
               <div>
-                <label className="text-sm font-medium">Subject *</label>
+                <label className="text-sm font-medium" htmlFor="complaint_f6">
+                  Subject *
+                </label>
                 <input
+                  id="complaint_f6"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   value={form.subject}
                   onChange={(e) =>
@@ -162,8 +180,11 @@ export default function Complaint() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium">Description *</label>
+                <label className="text-sm font-medium" htmlFor="complaint_f7">
+                  Description *
+                </label>
                 <textarea
+                  id="complaint_f7"
                   className="w-full mt-1 border rounded px-3 py-2 text-sm"
                   rows={4}
                   value={form.description}

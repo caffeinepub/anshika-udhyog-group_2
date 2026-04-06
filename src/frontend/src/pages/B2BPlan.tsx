@@ -160,7 +160,12 @@ export default function B2BPlan() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
         {(bd.benefits || DEFAULT_B2B.benefits).map((b, idx) => (
           <div
-            key={idx}
+            key={
+              (b as any).id ||
+              (b as any).title ||
+              (b as any).name ||
+              String(idx)
+            }
             className="text-center p-4 bg-white rounded-xl shadow-sm border"
           >
             <div className="text-3xl mb-2">{b.icon}</div>
@@ -173,7 +178,15 @@ export default function B2BPlan() {
       {/* Plans */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {(bd.plans || DEFAULT_B2B.plans).map((plan, idx) => (
-          <Card key={idx} className={`relative border-2 ${plan.color}`}>
+          <Card
+            key={
+              (plan as any).id ||
+              (plan as any).title ||
+              (plan as any).name ||
+              String(idx)
+            }
+            className={`relative border-2 ${plan.color}`}
+          >
             {plan.popular && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                 <Badge className="bg-green-600">{plan.badge}</Badge>
@@ -188,7 +201,15 @@ export default function B2BPlan() {
             <CardContent>
               <ul className="space-y-2 mb-4">
                 {(plan.features || []).map((f, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm">
+                  <li
+                    key={
+                      (f as any).id ||
+                      (f as any).title ||
+                      (f as any).name ||
+                      String(i)
+                    }
+                    className="flex items-center gap-2 text-sm"
+                  >
                     <span className="text-green-600">✓</span> {f}
                   </li>
                 ))}
@@ -235,6 +256,7 @@ export default function B2BPlan() {
                 <CardHeader>
                   <CardTitle>B2B Enquiry Form</CardTitle>
                   <button
+                    type="button"
                     onClick={() => setShowForm(false)}
                     className="absolute top-4 right-4 text-gray-400"
                   >
@@ -253,9 +275,9 @@ export default function B2BPlan() {
                       ] as const
                     ).map((key) => (
                       <div key={key}>
-                        <label className="text-xs font-medium capitalize">
+                        <p className="text-xs font-medium capitalize">
                           {key.replace(/([A-Z])/g, " $1")}
-                        </label>
+                        </p>
                         {key === "message" ? (
                           <textarea
                             className="w-full mt-0.5 border rounded px-2 py-1.5 text-sm"
